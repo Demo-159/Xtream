@@ -653,7 +653,7 @@
                 },
                 body: JSON.stringify({
                     message: message,
-                    content: btoa(unecode(content)),
+                    content: btoa(unescape(encodeURIComponent(content))),
                     sha: fileData.sha,
                     branch: config.branch
                 })
@@ -661,10 +661,6 @@
 
             if (!response.ok) throw new Error('No se pudo actualizar el archivo');
             return response.json();
-        }
-
-        function unescode(str) {
-            return unescape(encodeURIComponent(str));
         }
 
         window.onload = checkSession;
