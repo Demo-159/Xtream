@@ -40,7 +40,7 @@ const movies = [
   }
 ];
 
-// Base de datos de series
+// Base de datos de series - FORMATO CORRECTO PARA XTREAM
 const series = [
   {
     series_id: 1,
@@ -58,7 +58,8 @@ const series = [
     backdrop_path: ["https://image.tmdb.org/t/p/original/backdrop1.jpg"],
     youtube_trailer: "",
     episode_run_time: "45",
-    category_id: "2",
+    category_id: "1",
+    category_ids: [1],  // Añadido
     num: 1
   },
   {
@@ -77,7 +78,8 @@ const series = [
     backdrop_path: ["https://image.tmdb.org/t/p/original/backdrop2.jpg"],
     youtube_trailer: "",
     episode_run_time: "30",
-    category_id: "2",
+    category_id: "1",
+    category_ids: [1],  // Añadido
     num: 2
   }
 ];
@@ -91,6 +93,7 @@ const seriesEpisodes = {
         name: "Temporada 1",
         episode_count: 3,
         cover: "https://image.tmdb.org/t/p/w500/season1.jpg",
+        cover_big: "https://image.tmdb.org/t/p/original/season1.jpg",
         air_date: "2023-01-01"
       },
       {
@@ -98,6 +101,7 @@ const seriesEpisodes = {
         name: "Temporada 2",
         episode_count: 2,
         cover: "https://image.tmdb.org/t/p/w500/season2.jpg",
+        cover_big: "https://image.tmdb.org/t/p/original/season2.jpg",
         air_date: "2023-06-01"
       }
     ],
@@ -205,6 +209,7 @@ const seriesEpisodes = {
         name: "Temporada 1",
         episode_count: 2,
         cover: "https://image.tmdb.org/t/p/w500/serie2season1.jpg",
+        cover_big: "https://image.tmdb.org/t/p/original/serie2season1.jpg",
         air_date: "2022-05-15"
       }
     ],
@@ -304,7 +309,7 @@ const categories = [
 
 const seriesCategories = [
   {
-    category_id: "2",
+    category_id: "1",
     category_name: "Series",
     parent_id: 0
   }
@@ -323,7 +328,7 @@ function authenticate(req, res, next) {
   }
 }
 
-// Endpoint principal de Xtream Codes API
+// Endpoint de autenticación Xtream Codes
 app.get('/player_api.php', authenticate, (req, res) => {
   const action = req.query.action;
 
@@ -408,7 +413,7 @@ app.get('/player_api.php', authenticate, (req, res) => {
   }
 });
 
-// Endpoint para streaming de películas
+// Endpoint para streaming de películas (redirige a Archive.org)
 app.get('/movie/:username/:password/:streamId.:ext', (req, res) => {
   const { username, password, streamId } = req.params;
   
@@ -424,7 +429,7 @@ app.get('/movie/:username/:password/:streamId.:ext', (req, res) => {
   }
 });
 
-// Endpoint para streaming de series
+// Endpoint para streaming de series (redirige a Archive.org)
 app.get('/series/:username/:password/:episodeId.:ext', (req, res) => {
   const { username, password, episodeId } = req.params;
   
@@ -432,6 +437,7 @@ app.get('/series/:username/:password/:episodeId.:ext', (req, res) => {
     return res.status(401).send('Unauthorized');
   }
   
+  // Buscar el episodio en todas las series
   let foundEpisode = null;
   
   for (const seriesId in seriesEpisodes) {
@@ -455,22 +461,12 @@ app.get('/series/:username/:password/:episodeId.:ext', (req, res) => {
 
 // Ruta de inicio
 app.get('/', (req, res) => {
-  res.send(`
-    <h1>Xtream Codes API Server</h1>
-    <p>Server running correctly</p>
-    <h2>Configuración para TiviMate:</h2>
-    <ul>
-      <li><strong>Tipo:</strong> Xtream Codes API</li>
-      <li><strong>URL:</strong> ${req.protocol}://${req.get('host')}/player_api.php</li>
-      <li><strong>Usuario:</strong> ${USERNAME}</li>
-      <li><strong>Contraseña:</strong> ${PASSWORD}</li>
-    </ul>
-  `);
+  res.send('Xtream API Server - Running (Movies + Series)');
 });
 
 app.listen(port, () => {
   console.log(`Xtream API running on port ${port}`);
-  console.log(`URL: http://localhost:${port}/player_api.php`);
+  console.log(`URL de conexión: http://localhost:${port}`);
   console.log(`Usuario: ${USERNAME}`);
   console.log(`Contraseña: ${PASSWORD}`);
 });
