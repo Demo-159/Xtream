@@ -328,11 +328,48 @@ function authenticate(req, res, next) {
   }
 }
 
-// Endpoint get.php (redirige a player_api.php)
+// Endpoint M3U para TiviMate
 app.get('/get.php', (req, res) => {
-  // Redirigir a player_api.php con los mismos parámetros
-  const queryString = new URLSearchParams(req.query).toString();
-  res.redirect(`/player_api.php?${queryString}`);
+  const { username, password, type } = req.query;
+  
+  if (username !== USERNAME || password !== PASSWORD) {
+    return res.status(401).send('#EXTM3U\n#EXTINF:-1,Error: Invalid credentials\nhttp://invalid');
+  }
+  
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  let m3uContent = '#EXTM3U x-tvg-url=""\n\n';
+  
+  // Si se solicita solo series o todo el contenido
+  if (!type || type === 'series') {
+    // Agregar series usando el formato de series
+    series.forEach(serie => {
+      const serieData = seriesEpisodes[serie.series_id];
+      if (serieData && serieData.episodes) {
+        Object.keys(serieData.episodes).forEach(seasonNum => {
+          const episodes = serieData.episodes[seasonNum];
+          episodes.forEach(episode => {
+            const episodeName = `${serie.name} S${String(seasonNum).padStart(2, '0')}E${String(episode.episode_num).padStart(2, '0')} ${episode.title}`;
+            // Usar tvg-type="series" para que TiviMate lo reconozca
+            m3uContent += `#EXTINF:-1 tvg-id="serie_${serie.series_id}_${seasonNum}_${episode.episode_num}" tvg-name="${episodeName}" tvg-logo="${serie.cover}" tvg-type="series" group-title="📺 ${serie.name}",${episodeName}\n`;
+            m3uContent += `${baseUrl}/series/${username}/${password}/${episode.id}.${episode.container_extension}\n\n`;
+          });
+        });
+      }
+    });
+  }
+  
+  // Si se solicita solo películas o todo el contenido
+  if (!type || type === 'movie') {
+    // Agregar películas
+    movies.forEach(movie => {
+      m3uContent += `#EXTINF:-1 tvg-id="${movie.stream_id}" tvg-name="${movie.name}" tvg-logo="${movie.stream_icon}" tvg-type="movie" group-title="🎬 Películas",${movie.name}\n`;
+      m3uContent += `${baseUrl}/movie/${username}/${password}/${movie.stream_id}.${movie.container_extension}\n\n`;
+    });
+  }
+  
+  res.setHeader('Content-Type', 'audio/x-mpegurl; charset=utf-8');
+  res.setHeader('Content-Disposition', 'inline; filename="playlist.m3u"');
+  res.send(m3uContent);
 });
 
 // Endpoint de autenticación Xtream Codes
