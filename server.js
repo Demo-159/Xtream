@@ -328,6 +328,13 @@ function authenticate(req, res, next) {
   }
 }
 
+// Endpoint get.php (redirige a player_api.php)
+app.get('/get.php', (req, res) => {
+  // Redirigir a player_api.php con los mismos parámetros
+  const queryString = new URLSearchParams(req.query).toString();
+  res.redirect(`/player_api.php?${queryString}`);
+});
+
 // Endpoint de autenticación Xtream Codes
 app.get('/player_api.php', authenticate, (req, res) => {
   const action = req.query.action;
