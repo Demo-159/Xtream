@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 const USERNAME = 'usuario';
 const PASSWORD = 'password123';
 
-// Base de datos de películas (agrega tus videos de Archive.org aquí)
+// Base de datos de películas
 const movies = [
   {
     stream_id: 1,
@@ -58,7 +58,7 @@ const series = [
     backdrop_path: ["https://image.tmdb.org/t/p/original/backdrop1.jpg"],
     youtube_trailer: "",
     episode_run_time: "45",
-    category_id: "1",
+    category_id: "2",
     num: 1
   },
   {
@@ -77,14 +77,14 @@ const series = [
     backdrop_path: ["https://image.tmdb.org/t/p/original/backdrop2.jpg"],
     youtube_trailer: "",
     episode_run_time: "30",
-    category_id: "1",
+    category_id: "2",
     num: 2
   }
 ];
 
 // Episodios de las series
 const seriesEpisodes = {
-  1: { // Serie ID 1
+  1: {
     seasons: [
       {
         season_number: 1,
@@ -102,7 +102,7 @@ const seriesEpisodes = {
       }
     ],
     episodes: {
-      1: [ // Temporada 1
+      1: [
         {
           id: "101",
           episode_num: 1,
@@ -158,7 +158,7 @@ const seriesEpisodes = {
           direct_source: "https://archive.org/download/tu-id/serie1_s01e03.mp4"
         }
       ],
-      2: [ // Temporada 2
+      2: [
         {
           id: "201",
           episode_num: 1,
@@ -198,7 +198,7 @@ const seriesEpisodes = {
       ]
     }
   },
-  2: { // Serie ID 2
+  2: {
     seasons: [
       {
         season_number: 1,
@@ -304,7 +304,7 @@ const categories = [
 
 const seriesCategories = [
   {
-    category_id: "1",
+    category_id: "2",
     category_name: "Series",
     parent_id: 0
   }
@@ -323,44 +323,7 @@ function authenticate(req, res, next) {
   }
 }
 
-// Endpoint M3U para TiviMate
-app.get('/get.php', (req, res) => {
-  const { username, password } = req.query;
-  
-  if (username !== USERNAME || password !== PASSWORD) {
-    return res.status(401).send('#EXTM3U\n#EXTINF:-1,Error: Invalid credentials\nhttp://invalid');
-  }
-  
-  const baseUrl = `${req.protocol}://${req.get('host')}`;
-  let m3uContent = '#EXTM3U x-tvg-url=""\n\n';
-  
-  // Agregar películas
-  movies.forEach(movie => {
-    m3uContent += `#EXTINF:-1 tvg-id="${movie.stream_id}" tvg-name="${movie.name}" tvg-logo="${movie.stream_icon}" group-title="Películas",${movie.name}\n`;
-    m3uContent += `${baseUrl}/movie/${username}/${password}/${movie.stream_id}.${movie.container_extension}\n\n`;
-  });
-  
-  // Agregar series (todos los episodios)
-  series.forEach(serie => {
-    const serieData = seriesEpisodes[serie.series_id];
-    if (serieData && serieData.episodes) {
-      Object.keys(serieData.episodes).forEach(seasonNum => {
-        const episodes = serieData.episodes[seasonNum];
-        episodes.forEach(episode => {
-          const episodeName = `${serie.name} - T${seasonNum}E${episode.episode_num} - ${episode.title}`;
-          m3uContent += `#EXTINF:-1 tvg-id="serie_${serie.series_id}_${seasonNum}_${episode.episode_num}" tvg-name="${episodeName}" tvg-logo="${serie.cover}" group-title="${serie.name}",${episodeName}\n`;
-          m3uContent += `${baseUrl}/series/${username}/${password}/${episode.id}.${episode.container_extension}\n\n`;
-        });
-      });
-    }
-  });
-  
-  res.setHeader('Content-Type', 'audio/x-mpegurl; charset=utf-8');
-  res.setHeader('Content-Disposition', 'inline; filename="playlist.m3u"');
-  res.send(m3uContent);
-});
-
-// Endpoint de autenticación Xtream Codes
+// Endpoint principal de Xtream Codes API
 app.get('/player_api.php', authenticate, (req, res) => {
   const action = req.query.action;
 
@@ -411,6 +374,10 @@ app.get('/player_api.php', authenticate, (req, res) => {
       res.json([]);
       break;
     
+    case 'get_live_categories':
+      res.json([]);
+      break;
+    
     default:
       // Respuesta por defecto (info del servidor)
       res.json({
@@ -441,7 +408,7 @@ app.get('/player_api.php', authenticate, (req, res) => {
   }
 });
 
-// Endpoint para streaming de películas (redirige a Archive.org)
+// Endpoint para streaming de películas
 app.get('/movie/:username/:password/:streamId.:ext', (req, res) => {
   const { username, password, streamId } = req.params;
   
@@ -457,7 +424,7 @@ app.get('/movie/:username/:password/:streamId.:ext', (req, res) => {
   }
 });
 
-// Endpoint para streaming de series (redirige a Archive.org)
+// Endpoint para streaming de series
 app.get('/series/:username/:password/:episodeId.:ext', (req, res) => {
   const { username, password, episodeId } = req.params;
   
@@ -465,7 +432,6 @@ app.get('/series/:username/:password/:episodeId.:ext', (req, res) => {
     return res.status(401).send('Unauthorized');
   }
   
-  // Buscar el episodio en todas las series
   let foundEpisode = null;
   
   for (const seriesId in seriesEpisodes) {
@@ -489,9 +455,22 @@ app.get('/series/:username/:password/:episodeId.:ext', (req, res) => {
 
 // Ruta de inicio
 app.get('/', (req, res) => {
-  res.send('Xtream API Server - Running (Movies + Series)');
+  res.send(`
+    <h1>Xtream Codes API Server</h1>
+    <p>Server running correctly</p>
+    <h2>Configuración para TiviMate:</h2>
+    <ul>
+      <li><strong>Tipo:</strong> Xtream Codes API</li>
+      <li><strong>URL:</strong> ${req.protocol}://${req.get('host')}/player_api.php</li>
+      <li><strong>Usuario:</strong> ${USERNAME}</li>
+      <li><strong>Contraseña:</strong> ${PASSWORD}</li>
+    </ul>
+  `);
 });
 
 app.listen(port, () => {
   console.log(`Xtream API running on port ${port}`);
+  console.log(`URL: http://localhost:${port}/player_api.php`);
+  console.log(`Usuario: ${USERNAME}`);
+  console.log(`Contraseña: ${PASSWORD}`);
 });
