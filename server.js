@@ -11,17 +11,17 @@ const movies = [
   {
     stream_id: 1,
     num: 1,
-    name: "Shrek 1 Latino",
-    title: "Shrek 1",
+    name: "Shrek",
+    title: "Shrek",
     stream_type: "movie",
-    stream_icon: "https://image.tmdb.org/t/p/w500/ejemplo1.jpg",
+    stream_icon: "https://image.tmdb.org/t/p/original/bNTHSd3UqqLzIVwbDOGPnx3ScfF.jpg",
     rating: "7.5",
     rating_5based: 3.75,
     added: "1699564800",
     category_id: "1",
-    container_extension: "avi",
+    container_extension: "mkv",
     custom_sid: "",
-    direct_source: "https://archive.org/download/shrek_202407/Shrek.avi"
+    direct_source: "https://cdnvideo.davidmonrroy7.workers.dev/video/https%3A%2F%2Farchive.org%2Fdownload%2Fdercro-2040%2FDERCRO2040.mkv"
   },
   {
     stream_id: 2,
