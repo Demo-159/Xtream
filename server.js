@@ -11,17 +11,17 @@ const movies = [
   {
     stream_id: 1,
     num: 1,
-    name: "Película Ejemplo 1",
-    title: "Película Ejemplo 1",
+    name: "Shrek 1 Latino",
+    title: "Shrek 1",
     stream_type: "movie",
     stream_icon: "https://image.tmdb.org/t/p/w500/ejemplo1.jpg",
     rating: "7.5",
     rating_5based: 3.75,
     added: "1699564800",
     category_id: "1",
-    container_extension: "mp4",
+    container_extension: "avi",
     custom_sid: "",
-    direct_source: "https://archive.org/download/tu-id/pelicula1.mp4"
+    direct_source: "https://archive.org/download/shrek_202407/Shrek.avi"
   },
   {
     stream_id: 2,
