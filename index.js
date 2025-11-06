@@ -11,8 +11,8 @@ const movies = [
   {
     stream_id: 1,
     num: 1,
-    name: "Película Ejemplo 1",
-    title: "Película Ejemplo 1",
+    name: "Película Ejemplo 01",
+    title: "Película Ejemplo 01",
     stream_type: "movie",
     stream_icon: "https://image.tmdb.org/t/p/w500/ejemplo1.jpg",
     rating: "7.5",
