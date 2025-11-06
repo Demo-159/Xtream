@@ -104,7 +104,28 @@ function authenticate(req, res, next) {
   }
 }
 
-// Endpoint de autenticación
+// Endpoint M3U para TiviMate
+app.get('/get.php', (req, res) => {
+  const { username, password } = req.query;
+  
+  if (username !== USERNAME || password !== PASSWORD) {
+    return res.status(401).send('#EXTM3U\n#EXTINF:-1,Error: Invalid credentials\nhttp://invalid');
+  }
+  
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  let m3uContent = '#EXTM3U x-tvg-url=""\n\n';
+  
+  movies.forEach(movie => {
+    m3uContent += `#EXTINF:-1 tvg-id="${movie.stream_id}" tvg-name="${movie.name}" tvg-logo="${movie.stream_icon}" group-title="Películas",${movie.name}\n`;
+    m3uContent += `${baseUrl}/movie/${username}/${password}/${movie.stream_id}.${movie.container_extension}\n\n`;
+  });
+  
+  res.setHeader('Content-Type', 'audio/x-mpegurl; charset=utf-8');
+  res.setHeader('Content-Disposition', 'inline; filename="playlist.m3u"');
+  res.send(m3uContent);
+});
+
+// Endpoint de autenticación Xtream Codes
 app.get('/player_api.php', authenticate, (req, res) => {
   const action = req.query.action;
 
