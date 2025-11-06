@@ -514,3 +514,10 @@ app.listen(port, () => {
   console.log(`Usuario: ${USERNAME}`);
   console.log(`Contraseña: ${PASSWORD}`);
 });
+
+const path = require('path');
+
+// Servir el portal de administración
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin.html'));
+});
