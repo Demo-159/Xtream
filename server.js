@@ -40,6 +40,217 @@ const movies = [
   }
 ];
 
+// Base de datos de series
+const series = [
+  {
+    series_id: 1,
+    name: "Serie Ejemplo 1",
+    title: "Serie Ejemplo 1",
+    cover: "https://image.tmdb.org/t/p/w500/serie1.jpg",
+    plot: "Una serie de ejemplo sobre aventuras increíbles",
+    cast: "Actor A, Actor B, Actor C",
+    director: "Director X",
+    genre: "Drama, Acción",
+    releaseDate: "2023-01-01",
+    last_modified: "1699564800",
+    rating: "8.5",
+    rating_5based: 4.25,
+    backdrop_path: ["https://image.tmdb.org/t/p/original/backdrop1.jpg"],
+    youtube_trailer: "",
+    episode_run_time: "45",
+    category_id: "1",
+    num: 1
+  },
+  {
+    series_id: 2,
+    name: "Serie Ejemplo 2",
+    title: "Serie Ejemplo 2",
+    cover: "https://image.tmdb.org/t/p/w500/serie2.jpg",
+    plot: "Una comedia familiar divertida",
+    cast: "Actor D, Actor E",
+    director: "Director Y",
+    genre: "Comedia",
+    releaseDate: "2022-05-15",
+    last_modified: "1699564800",
+    rating: "7.8",
+    rating_5based: 3.9,
+    backdrop_path: ["https://image.tmdb.org/t/p/original/backdrop2.jpg"],
+    youtube_trailer: "",
+    episode_run_time: "30",
+    category_id: "1",
+    num: 2
+  }
+];
+
+// Episodios de las series
+const seriesEpisodes = {
+  1: { // Serie ID 1
+    seasons: [
+      {
+        season_number: 1,
+        name: "Temporada 1",
+        episode_count: 3,
+        cover: "https://image.tmdb.org/t/p/w500/season1.jpg",
+        air_date: "2023-01-01"
+      },
+      {
+        season_number: 2,
+        name: "Temporada 2",
+        episode_count: 2,
+        cover: "https://image.tmdb.org/t/p/w500/season2.jpg",
+        air_date: "2023-06-01"
+      }
+    ],
+    episodes: {
+      1: [ // Temporada 1
+        {
+          id: "101",
+          episode_num: 1,
+          title: "Episodio 1 - El Comienzo",
+          container_extension: "mp4",
+          info: {
+            name: "Episodio 1 - El Comienzo",
+            season: 1,
+            episode_num: 1,
+            air_date: "2023-01-01",
+            plot: "El primer episodio de la serie",
+            duration_secs: "2700",
+            duration: "45:00",
+            rating: "8.3",
+            cover_big: "https://image.tmdb.org/t/p/original/ep1.jpg"
+          },
+          direct_source: "https://archive.org/download/tu-id/serie1_s01e01.mp4"
+        },
+        {
+          id: "102",
+          episode_num: 2,
+          title: "Episodio 2 - La Aventura Continúa",
+          container_extension: "mp4",
+          info: {
+            name: "Episodio 2 - La Aventura Continúa",
+            season: 1,
+            episode_num: 2,
+            air_date: "2023-01-08",
+            plot: "La trama se complica",
+            duration_secs: "2700",
+            duration: "45:00",
+            rating: "8.5",
+            cover_big: "https://image.tmdb.org/t/p/original/ep2.jpg"
+          },
+          direct_source: "https://archive.org/download/tu-id/serie1_s01e02.mp4"
+        },
+        {
+          id: "103",
+          episode_num: 3,
+          title: "Episodio 3 - El Desenlace",
+          container_extension: "mp4",
+          info: {
+            name: "Episodio 3 - El Desenlace",
+            season: 1,
+            episode_num: 3,
+            air_date: "2023-01-15",
+            plot: "Final de temporada impactante",
+            duration_secs: "2700",
+            duration: "45:00",
+            rating: "9.0",
+            cover_big: "https://image.tmdb.org/t/p/original/ep3.jpg"
+          },
+          direct_source: "https://archive.org/download/tu-id/serie1_s01e03.mp4"
+        }
+      ],
+      2: [ // Temporada 2
+        {
+          id: "201",
+          episode_num: 1,
+          title: "Episodio 1 - Nueva Temporada",
+          container_extension: "mp4",
+          info: {
+            name: "Episodio 1 - Nueva Temporada",
+            season: 2,
+            episode_num: 1,
+            air_date: "2023-06-01",
+            plot: "Comienza una nueva aventura",
+            duration_secs: "2700",
+            duration: "45:00",
+            rating: "8.7",
+            cover_big: "https://image.tmdb.org/t/p/original/s2ep1.jpg"
+          },
+          direct_source: "https://archive.org/download/tu-id/serie1_s02e01.mp4"
+        },
+        {
+          id: "202",
+          episode_num: 2,
+          title: "Episodio 2 - El Giro",
+          container_extension: "mp4",
+          info: {
+            name: "Episodio 2 - El Giro",
+            season: 2,
+            episode_num: 2,
+            air_date: "2023-06-08",
+            plot: "Un giro inesperado en la trama",
+            duration_secs: "2700",
+            duration: "45:00",
+            rating: "8.9",
+            cover_big: "https://image.tmdb.org/t/p/original/s2ep2.jpg"
+          },
+          direct_source: "https://archive.org/download/tu-id/serie1_s02e02.mp4"
+        }
+      ]
+    }
+  },
+  2: { // Serie ID 2
+    seasons: [
+      {
+        season_number: 1,
+        name: "Temporada 1",
+        episode_count: 2,
+        cover: "https://image.tmdb.org/t/p/w500/serie2season1.jpg",
+        air_date: "2022-05-15"
+      }
+    ],
+    episodes: {
+      1: [
+        {
+          id: "301",
+          episode_num: 1,
+          title: "Piloto",
+          container_extension: "mp4",
+          info: {
+            name: "Piloto",
+            season: 1,
+            episode_num: 1,
+            air_date: "2022-05-15",
+            plot: "El episodio piloto",
+            duration_secs: "1800",
+            duration: "30:00",
+            rating: "7.5",
+            cover_big: "https://image.tmdb.org/t/p/original/serie2ep1.jpg"
+          },
+          direct_source: "https://archive.org/download/tu-id/serie2_s01e01.mp4"
+        },
+        {
+          id: "302",
+          episode_num: 2,
+          title: "Segundo Episodio",
+          container_extension: "mp4",
+          info: {
+            name: "Segundo Episodio",
+            season: 1,
+            episode_num: 2,
+            air_date: "2022-05-22",
+            plot: "La historia continúa",
+            duration_secs: "1800",
+            duration: "30:00",
+            rating: "8.0",
+            cover_big: "https://image.tmdb.org/t/p/original/serie2ep2.jpg"
+          },
+          direct_source: "https://archive.org/download/tu-id/serie2_s01e02.mp4"
+        }
+      ]
+    }
+  }
+};
+
 // Información detallada de películas
 const movieInfo = {
   1: {
@@ -91,6 +302,14 @@ const categories = [
   }
 ];
 
+const seriesCategories = [
+  {
+    category_id: "1",
+    category_name: "Series",
+    parent_id: 0
+  }
+];
+
 // Middleware
 app.use(express.json());
 
@@ -115,9 +334,25 @@ app.get('/get.php', (req, res) => {
   const baseUrl = `${req.protocol}://${req.get('host')}`;
   let m3uContent = '#EXTM3U x-tvg-url=""\n\n';
   
+  // Agregar películas
   movies.forEach(movie => {
     m3uContent += `#EXTINF:-1 tvg-id="${movie.stream_id}" tvg-name="${movie.name}" tvg-logo="${movie.stream_icon}" group-title="Películas",${movie.name}\n`;
     m3uContent += `${baseUrl}/movie/${username}/${password}/${movie.stream_id}.${movie.container_extension}\n\n`;
+  });
+  
+  // Agregar series (todos los episodios)
+  series.forEach(serie => {
+    const serieData = seriesEpisodes[serie.series_id];
+    if (serieData && serieData.episodes) {
+      Object.keys(serieData.episodes).forEach(seasonNum => {
+        const episodes = serieData.episodes[seasonNum];
+        episodes.forEach(episode => {
+          const episodeName = `${serie.name} - T${seasonNum}E${episode.episode_num} - ${episode.title}`;
+          m3uContent += `#EXTINF:-1 tvg-id="serie_${serie.series_id}_${seasonNum}_${episode.episode_num}" tvg-name="${episodeName}" tvg-logo="${serie.cover}" group-title="${serie.name}",${episodeName}\n`;
+          m3uContent += `${baseUrl}/series/${username}/${password}/${episode.id}.${episode.container_extension}\n\n`;
+        });
+      });
+    }
   });
   
   res.setHeader('Content-Type', 'audio/x-mpegurl; charset=utf-8');
@@ -149,7 +384,27 @@ app.get('/player_api.php', authenticate, (req, res) => {
       break;
     
     case 'get_series':
-      res.json([]);
+      res.json(series);
+      break;
+    
+    case 'get_series_categories':
+      res.json(seriesCategories);
+      break;
+    
+    case 'get_series_info':
+      const seriesId = req.query.series_id;
+      const serieInfo = series.find(s => s.series_id == seriesId);
+      const serieEpisodes = seriesEpisodes[seriesId];
+      
+      if (serieInfo && serieEpisodes) {
+        res.json({
+          seasons: serieEpisodes.seasons,
+          info: serieInfo,
+          episodes: serieEpisodes.episodes
+        });
+      } else {
+        res.json({ error: "Series not found" });
+      }
       break;
     
     case 'get_live_streams':
@@ -186,7 +441,7 @@ app.get('/player_api.php', authenticate, (req, res) => {
   }
 });
 
-// Endpoint para streaming (redirige a Archive.org)
+// Endpoint para streaming de películas (redirige a Archive.org)
 app.get('/movie/:username/:password/:streamId.:ext', (req, res) => {
   const { username, password, streamId } = req.params;
   
@@ -202,9 +457,39 @@ app.get('/movie/:username/:password/:streamId.:ext', (req, res) => {
   }
 });
 
+// Endpoint para streaming de series (redirige a Archive.org)
+app.get('/series/:username/:password/:episodeId.:ext', (req, res) => {
+  const { username, password, episodeId } = req.params;
+  
+  if (username !== USERNAME || password !== PASSWORD) {
+    return res.status(401).send('Unauthorized');
+  }
+  
+  // Buscar el episodio en todas las series
+  let foundEpisode = null;
+  
+  for (const seriesId in seriesEpisodes) {
+    const serieData = seriesEpisodes[seriesId];
+    for (const seasonNum in serieData.episodes) {
+      const episode = serieData.episodes[seasonNum].find(ep => ep.id === episodeId);
+      if (episode) {
+        foundEpisode = episode;
+        break;
+      }
+    }
+    if (foundEpisode) break;
+  }
+  
+  if (foundEpisode && foundEpisode.direct_source) {
+    res.redirect(foundEpisode.direct_source);
+  } else {
+    res.status(404).send('Episode not found');
+  }
+});
+
 // Ruta de inicio
 app.get('/', (req, res) => {
-  res.send('Xtream API Server - Running');
+  res.send('Xtream API Server - Running (Movies + Series)');
 });
 
 app.listen(port, () => {
