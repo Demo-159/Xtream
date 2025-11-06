@@ -55,7 +55,7 @@ const series = [
     last_modified: "1699564800",
     rating: "8.5",
     rating_5based: 4.25,
-    backdrop_path: ["https://image.tmdb.org/t/p/original/backdrop1.jpg"],
+    backdrop_path: ["https://d32qys9a6wm9no.cloudfront.net/images/tvs/backdrop/f2/0eb528b823acf5fcb65664b432ea07db_1280x720.jpg?t=1760041925"],
     youtube_trailer: "",
     episode_run_time: "45",
     category_id: "1",
@@ -110,18 +110,18 @@ const seriesEpisodes = {
         {
           id: "101",
           episode_num: 1,
-          title: "Episodio 1 - El Comienzo",
+          title: "Episodio 1",
           container_extension: "mp4",
           info: {
-            name: "Episodio 1 - El Comienzo",
+            name: "Episodio 1",
             season: 1,
             episode_num: 1,
-            air_date: "2023-01-01",
-            plot: "El primer episodio de la serie",
+            air_date: "2025-01-01",
+            plot: "La persona más infeliz del planeta debe salvar al mundo de la felicidad.",
             duration_secs: "2700",
             duration: "45:00",
             rating: "8.3",
-            cover_big: "https://image.tmdb.org/t/p/original/ep1.jpg"
+            cover_big: "https://is1-ssl.mzstatic.com/image/thumb/ntLNBvnQxDUKa70T9THm8Q/580x386KF.TVALC02.webp?color=000000&style=m"
           },
           direct_source: "https://archive.org/download/tu-id/serie1_s01e01.mp4"
         },
