@@ -53,7 +53,7 @@ const series = [
     genre: "Drama, Ciencia ficción",
     releaseDate: "2025-11-07",
     last_modified: "1699564800",
-    rating: "Nuevo",
+    rating: "9.0",
     rating_5based: 4.25,
     backdrop_path: ["https://d32qys9a6wm9no.cloudfront.net/images/tvs/backdrop/f2/0eb528b823acf5fcb65664b432ea07db_1280x720.jpg?t=1760041925"],
     youtube_trailer: "",
@@ -110,59 +110,40 @@ const seriesEpisodes = {
         {
           id: "101",
           episode_num: 1,
-          title: "Episodio 1",
+          title: "Episodio 1 - Somos nosotros",
           container_extension: "mp4",
           info: {
-            name: "Episodio 1",
+            name: "Episodio 1 - Somos nosotros",
             season: 1,
             episode_num: 1,
-            air_date: "2025-01-01",
-            plot: "La persona más infeliz del planeta debe salvar al mundo de la felicidad.",
+            air_date: "2025-11-07",
+            plot: "El descubrimiento de un astrónomo pone al mundo de cabeza. Carol Sturka, una novelista malhumorada, se enfrenta a este nuevo y extraño mundo.",
             duration_secs: "2700",
-            duration: "45:00",
-            rating: "8.3",
+            duration: "58:00",
+            rating: "9.3",
             cover_big: "https://is1-ssl.mzstatic.com/image/thumb/ntLNBvnQxDUKa70T9THm8Q/580x386KF.TVALC02.webp?color=000000&style=m"
           },
-          direct_source: "https://archive.org/download/tu-id/serie1_s01e01.mp4"
+          direct_source: "https://def4.pcloud.com/cBZgWsb877ZpWSrVM7ZZZk5lm0kZ2ZZsVLZkZLdx9iVZo8ZiYZ8QZF7Z4mZ9QZSLZNQZHLZe8ZT4Z04ZlRZbYZR6bM5ZvKBGnb50zlXyCnvQAhBS4Rmhqws7/Pluribus_S01E01_We%20Is%20Us.mp4"
         },
         {
           id: "102",
           episode_num: 2,
-          title: "Episodio 2 - La Aventura Continúa",
+          title: "Episodio 2 - Chica Pirata",
           container_extension: "mp4",
           info: {
-            name: "Episodio 2 - La Aventura Continúa",
+            name: "Episodio 2 - Chica Pirata",
             season: 1,
             episode_num: 2,
-            air_date: "2023-01-08",
-            plot: "La trama se complica",
+            air_date: "2025-11-07",
+            plot: "Un rostro sospechosamente familiar le muestra la nueva y bizarra normalidad a Carol. Una junta en Europa reúne a desconocidos y provoca fricciones.",
             duration_secs: "2700",
-            duration: "45:00",
-            rating: "8.5",
+            duration: "63:00",
+            rating: "9.5",
             cover_big: "https://image.tmdb.org/t/p/original/ep2.jpg"
           },
-          direct_source: "https://archive.org/download/tu-id/serie1_s01e02.mp4"
+          direct_source: "https://def2.pcloud.com/cBZlAfb877ZFeLrVM7ZZZhJlm0kZ2ZZsVLZkZsXfHJVZQ4Z7RZS8ZgRZCpZ3JZgQZ6zZdRZiFZU8Z14Zj4Za8ZhHYM5ZzWnwGtuUXBkXID3pL8bEUYu99f2y/Pluribus_S01E02_Pirate%20Lady.mp4"
         },
-        {
-          id: "103",
-          episode_num: 3,
-          title: "Episodio 3 - El Desenlace",
-          container_extension: "mp4",
-          info: {
-            name: "Episodio 3 - El Desenlace",
-            season: 1,
-            episode_num: 3,
-            air_date: "2023-01-15",
-            plot: "Final de temporada impactante",
-            duration_secs: "2700",
-            duration: "45:00",
-            rating: "9.0",
-            cover_big: "https://image.tmdb.org/t/p/original/ep3.jpg"
-          },
-          direct_source: "https://archive.org/download/tu-id/serie1_s01e03.mp4"
-        }
-      ],
-      2: [
+        
         {
           id: "201",
           episode_num: 1,
