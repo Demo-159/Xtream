@@ -64,8 +64,8 @@ const series = [
   },
   {
     series_id: 2,
-    name: "Serie Ejemplo 2",
-    title: "Serie Ejemplo 2",
+    name: "Chespirito: Sin Querer Queriendo",
+    title: "Chespirito: Sin Querer Queriendo",
     cover: "https://image.tmdb.org/t/p/w500/serie2.jpg",
     plot: "Una comedia familiar divertida",
     cast: "Actor D, Actor E",
