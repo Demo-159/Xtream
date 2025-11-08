@@ -142,43 +142,6 @@ const seriesEpisodes = {
             cover_big: "https://image.tmdb.org/t/p/original/ep2.jpg"
           },
           direct_source: "https://def2.pcloud.com/cBZlAfb877ZFeLrVM7ZZZhJlm0kZ2ZZsVLZkZsXfHJVZQ4Z7RZS8ZgRZCpZ3JZgQZ6zZdRZiFZU8Z14Zj4Za8ZhHYM5ZzWnwGtuUXBkXID3pL8bEUYu99f2y/Pluribus_S01E02_Pirate%20Lady.mp4"
-        },
-        
-        {
-          id: "201",
-          episode_num: 1,
-          title: "Episodio 1 - Nueva Temporada",
-          container_extension: "mp4",
-          info: {
-            name: "Episodio 1 - Nueva Temporada",
-            season: 2,
-            episode_num: 1,
-            air_date: "2023-06-01",
-            plot: "Comienza una nueva aventura",
-            duration_secs: "2700",
-            duration: "45:00",
-            rating: "8.7",
-            cover_big: "https://image.tmdb.org/t/p/original/s2ep1.jpg"
-          },
-          direct_source: "https://archive.org/download/tu-id/serie1_s02e01.mp4"
-        },
-        {
-          id: "202",
-          episode_num: 2,
-          title: "Episodio 2 - El Giro",
-          container_extension: "mp4",
-          info: {
-            name: "Episodio 2 - El Giro",
-            season: 2,
-            episode_num: 2,
-            air_date: "2023-06-08",
-            plot: "Un giro inesperado en la trama",
-            duration_secs: "2700",
-            duration: "45:00",
-            rating: "8.9",
-            cover_big: "https://image.tmdb.org/t/p/original/s2ep2.jpg"
-          },
-          direct_source: "https://archive.org/download/tu-id/serie1_s02e02.mp4"
         }
       ]
     }
@@ -191,7 +154,7 @@ const seriesEpisodes = {
         episode_count: 2,
         cover: "https://image.tmdb.org/t/p/w500/serie2season1.jpg",
         cover_big: "https://image.tmdb.org/t/p/original/serie2season1.jpg",
-        air_date: "2022-05-15"
+        air_date: "2025-05-15"
       }
     ],
     episodes: {
